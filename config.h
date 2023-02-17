@@ -138,7 +138,22 @@ static const char *localhost[] = { "firefox", "localhost:3000", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-
+  /* system commands */
+	{ 0,    XF86XK_MonBrightnessUp,      spawn,          {.v = upbrightness } },
+	{ 0,    XF86XK_MonBrightnessDown,    spawn,          {.v = downbrightness } },
+	{ 0,    XF86XK_KbdBrightnessUp,      spawn,          {.v = upkbbacklight } },
+	{ 0,    XF86XK_KbdBrightnessDown,    spawn,          {.v = downkbbacklight } },
+	{ 0,    XF86XK_AudioPlay,      			 spawn,          {.v = playmusic } },
+	{ 0,    XF86XK_AudioNext,      			 spawn,          {.v = playnext } },
+	{ 0,    XF86XK_AudioPrev,      			 spawn,          {.v = playprev } },
+	{ 0,    XF86XK_AudioRaiseVolume,     spawn,          {.v = upvol } },
+	{ 0,    XF86XK_AudioLowerVolume,     spawn,          {.v = downvol } },
+	{ 0,    XF86XK_AudioMute,            spawn,          {.v = mutevol } },
+	{ Mod1Mask,             	XK_space,  spawn,          {.v = dunstclose } },
+	{ Mod1Mask|ShiftMask,     XK_space,  spawn,          {.v = dunstcloseall } },
+	{ Mod1Mask,           		XK_grave,  spawn,          {.v = dunsthistory } },
+	{ MODKEY|ShiftMask,       XK_x,      spawn,          {.v = shutdown } },
+	{ MODKEY|ShiftMask,       XK_r,      spawn,          {.v = reboot } },
 };
 
 /* button definitions */
