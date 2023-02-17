@@ -188,7 +188,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,	      XK_b,      spawn,          {.v = batterylevel } },
 	// { MODKEY,	                XK_g,      spawn,          {.v = google } },
 	{ MODKEY,	                XK_g,      spawn,          {.v = github } },
-	// { MODKEY|ShiftMask,	      XK_f,      spawn,          {.v = facebook } },
+	{ MODKEY|ShiftMask,	      XK_f,      spawn,          {.v = facebook } },
 	{ MODKEY|ShiftMask,	      XK_m,      spawn,          {.v = messenger } },
 	{ MODKEY|ShiftMask,	      XK_n,      spawn,          {.v = netflix } },
 	{ MODKEY|ShiftMask,	      XK_y,      spawn,          {.v = youtube } },
@@ -204,7 +204,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,	      XK_l,      spawn,          {.v = localhost } },
 
   /* dwm commands */
-	{ MODKEY|ShiftMask,       XK_f,      togglebar,      {0} },
+	// { MODKEY|ShiftMask,       XK_f,      togglebar,      {0} },
 	{ MODKEY,                 XK_Tab,    focusstack,     {.i = +1 } },
 	{ MODKEY|ShiftMask,       XK_Tab,    focusstack,     {.i = -1 } },
 	{ MODKEY,                 XK_j,      focusstack,     {.i = +1 } },
