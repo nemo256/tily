@@ -42,20 +42,18 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const float mfact        = 0.63; /* factor of master area size [0.05..0.95] */
+static const int nmaster        = 1;    /* number of clients in master area */
+static const int resizehints    = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -66,9 +64,77 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
+// controls
+static const char *upbrightness[] = { "brightnessctl", "s", "10%+", NULL };
+static const char *downbrightness[] = { "brightnessctl", "s", "10%-", NULL };
+static const char *upkbbacklight[] = { "/root/bin/kbbacklight", "UP", NULL };
+static const char *downkbbacklight[] = { "/root/bin/kbbacklight", "DOWN", NULL };
+static const char *batterylevel[] = { "/root/bin/batterylevel", NULL };
+static const char *dunstclose[]   = { "dunstctl", "close", NULL };
+static const char *dunstcloseall[]   = { "dunstctl", "close-all", NULL };
+static const char *dunsthistory[]   = { "dunstctl", "history-pop", NULL };
+static const char *playmusic[]   = { "mpc", "toggle", NULL };
+static const char *playnext[]   = { "mpc", "next", NULL };
+static const char *playprev[]   = { "mpc", "prev", NULL };
+static const char *upvol[]   = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
+static const char *downvol[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
+static const char *mutevol[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray2, "-sb", col_ruby, "-sf", col_gray3, NULL };
+
+// set st as the default terminal
 static const char *termcmd[]  = { "st", NULL };
+
+// terminal commands
+static const char *shutdown[] = { "st", "-e", "systemctl", "poweroff",  NULL };
+static const char *reboot[] = { "st", "-e", "systemctl", "reboot",  NULL };
+static const char *ranger[] = { "st", "-e", "ranger", NULL };
+static const char *htop[] = { "st", "-e", "htop", NULL };
+static const char *vim[] = { "st", "-e", "nvim", NULL };
+static const char *irssi[] = { "st", "-e", "irssi", NULL };
+static const char *newsboat[] = { "st", "-e", "newsboat", NULL };
+static const char *email[] = { "st", "-e", "neomutt", NULL };
+static const char *clock[] = { "st", "-e", "tty-clock", "-scbC", "4", NULL };
+static const char *pipeviewer[] = { "st", "-f", "'Fira Code:size=16:style=bold:antialias=true:autohint=true'", "-e", "pipe-viewer", NULL };
+static const char *torrent[] = { "st", "-e", "tremc", NULL };
+static const char *music[] = { "st", "-e", "ncmpcpp", NULL };
+static const char *lynx[] = { "st", "-e", "lynx", NULL };
+static const char *anime[] = { "st", "-e", "ani-cli", "--dub", NULL };
+static const char *wifi[] = { "st", "-e", "nmtui", NULL };
+static const char *watch[] = { "/root/bin/watch", NULL };
+static const char *record[] = { "/root/bin/record", NULL };
+static const char *vpn[] = { "/root/bin/vpn", NULL };
+static const char *background[] = { "/root/bin/background", NULL };
+static const char *mykeys[] = { "/root/bin/keys", NULL };
+static const char *download[] = { "/root/bin/download", NULL };
+static const char *mypointer[] = { "/root/bin/pointer", NULL };
+static const char *screenshot[] = { "/root/bin/screenshot", NULL };
+static const char *screenshotSelect[] = { "/root/bin/screenshotSelect", NULL };
+static const char *photos[] = { "sxiv", "-ftqrb", "/root/Pictures", NULL };
+static const char *signal_desktop[] = { "signal-desktop", "--no-sandbox", NULL };
+// static const char *tuir[] = { "st", "-e", "tuir", NULL };
+
+// firefox command
+static const char *firefox[] = { "firefox", NULL };
+
+// websites
+static const char *google[] = { "firefox", "https://www.google.com/", NULL };
+static const char *facebook[] = { "firefox", "https://www.facebook.com/", NULL };
+static const char *messenger[] = { "firefox", "https://www.messenger.com/", NULL };
+static const char *netflix[] = { "firefox", "https://www.netflix.com/", NULL };
+static const char *youtube[] = { "firefox", "https://www.youtube.com/", NULL };
+static const char *instagram[] = { "firefox", "https://www.instagram.com/", NULL };
+static const char *gmail[] = { "firefox", "https://mail.google.com/", NULL };
+static const char *aliexpress[] = { "firefox", "https://www.aliexpress.com/", NULL };
+static const char *ouedkniss[] = { "firefox", "https://www.ouedkniss.com/", NULL };
+static const char *GPhotos[] = { "firefox", "https://photos.google.com/", NULL };
+static const char *eccp[] = { "firefox", "https://eccp.poste.dz/", NULL };
+static const char *univ[] = { "firefox", "https://fs.univ-boumerdes.dz/", NULL };
+static const char *translate[] = { "firefox", "https://translate.google.com/", NULL };
+static const char *magnetDL[] = { "firefox", "https://www.magnetdl.com/", NULL };
+static const char *contacts[] = { "firefox", "https://contacts.google.com/", NULL };
+static const char *github[] = { "firefox", "https://www.github.com/nemo256/", NULL };
+static const char *localhost[] = { "firefox", "localhost:3000", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
