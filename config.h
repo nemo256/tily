@@ -11,7 +11,7 @@ static const char dmenufont[]       = "FiraCode Nerd Font:size=17:antialias=true
 static const char col_black[]       = "#222222";
 static const char col_gray1[]       = "#444444";
 static const char col_gray2[]       = "#bbbbbb";
-static const char col_gray3[]       = "#eeeeee";
+static const char col_gray3[]       = "#000000";
 static const char col_indigo[]      = "#4b0088";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
