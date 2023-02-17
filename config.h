@@ -12,11 +12,11 @@ static const char col_black[]       = "#222222";
 static const char col_gray1[]       = "#444444";
 static const char col_gray2[]       = "#bbbbbb";
 static const char col_gray3[]       = "#eeeeee";
-static const char col_ruby[]        = "#9b111e";
+static const char col_indigo[]      = "#4b0088";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray2, col_black, col_gray1 },
-	[SchemeSel]  = { col_gray3, col_ruby,  col_ruby  },
+	[SchemeSel]  = { col_gray3, col_indigo,  col_indigo  },
 };
 
 /* tagging */
@@ -81,7 +81,7 @@ static const char *upvol[]   = { "amixer", "-q", "set", "Master", "5%+", "unmute
 static const char *downvol[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
 static const char *mutevol[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray2, "-sb", col_ruby, "-sf", col_gray3, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray2, "-sb", col_indigo, "-sf", col_gray3, NULL };
 
 // set st as the default terminal
 static const char *termcmd[]  = { "st", NULL };
