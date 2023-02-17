@@ -26,9 +26,19 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class      instance    title       tags mask   isfloating   monitor */
+	{ "firefox",  "Navigator",  NULL,  	 	      1,	    	  0,   		 -1 },
+	{ "St",  			"st",       	"nmtui",   	    1 << 1,	    0,   		 -1 },
+	{ "St",  			"st",       	"htop",   	    1 << 1,	    0,   		 -1 },
+	{ "St",  			"st",       	"nvim",   	    1 << 2,	    0,   		 -1 },
+	{ "St",  			"st",       	"tty-clock",   	1 << 2,	    0,   		 -1 },
+	{ "St",  			"st",       	"newsboat",     1 << 3,	    0,   	 	 -1 },
+	{ "St",  			"st",       	"irssi",  	    1 << 3,	    0,   		 -1 },
+	{ "St",  			"st",       	"ani-cli",      1 << 3,	    0,   		 -1 },
+	{ "St",  			"st",       	"pipe-viewer",  1 << 3,	    0,   		 -1 },
+	{ "St",  			"st",       	"tremc",  			1 << 3,	    0,   		 -1 },
+	{ "Zathura",  NULL,       	NULL,  					1 << 3,	    0,   		 -1 },
+	{ "mpv",  		"gl",       	NULL,  			    1 << 3,	    0,   		 -1 },
 };
 
 /* layout(s) */
