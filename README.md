@@ -1,15 +1,15 @@
 <div align="center">
 
-# `bp`
+# `tily`
 
 <h3>
-  Personal boilerplate
+  tily is my custom dwm configuration.
 </h3>
 
 <!-- Badges -->
-![GitHub Repo stars](https://img.shields.io/github/stars/nemo256/bp?style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/nemo256/tily?style=for-the-badge)
 ![Maintenance](https://shields.io/maintenance/yes/2022?style=for-the-badge)
-![License](https://shields.io/github/license/nemo256/bp?style=for-the-badge)
+![License](https://shields.io/github/license/nemo256/tily?style=for-the-badge)
 
 <!-- Demo image -->
 ![Demo](demo.png)
@@ -27,7 +27,7 @@
 
 ## Project Structure 📁
 ```
-bp/
+tily/
 ├── file
 ├── file
 ├── folder/
@@ -57,4 +57,4 @@ $ Command
 ```
 
 ## License 📑
-- Please read [bp/LICENSE](https://github.com/nemo256/bp/blob/master/LICENSE)
+- Please read [tily/LICENSE](https://github.com/nemo256/tily/blob/master/LICENSE)
