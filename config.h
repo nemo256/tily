@@ -119,7 +119,6 @@ static const char *signal_desktop[] = { "signal-desktop", "--no-sandbox", NULL }
 static const char *firefox[] = { "firefox", NULL };
 
 // websites
-static const char *google[] = { "firefox", "https://www.google.com/", NULL };
 static const char *facebook[] = { "firefox", "https://www.facebook.com/", NULL };
 static const char *messenger[] = { "firefox", "https://www.messenger.com/", NULL };
 static const char *netflix[] = { "firefox", "https://www.netflix.com/", NULL };
@@ -186,7 +185,6 @@ static const Key keys[] = {
   /* website commands */
 	{ MODKEY,	                XK_b,      spawn,          {.v = firefox } },
 	{ MODKEY|ShiftMask,	      XK_b,      spawn,          {.v = batterylevel } },
-	// { MODKEY,	                XK_g,      spawn,          {.v = google } },
 	{ MODKEY,	                XK_g,      spawn,          {.v = github } },
 	{ MODKEY|ShiftMask,	      XK_f,      spawn,          {.v = facebook } },
 	{ MODKEY|ShiftMask,	      XK_m,      spawn,          {.v = messenger } },
