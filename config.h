@@ -181,6 +181,7 @@ static const Key keys[] = {
 	{ ControlMask,            XK_grave,  spawn,          {.v = mypointer } },
 	{ MODKEY,                 XK_p,      spawn,          {.v = photos } },
 	{ MODKEY,             		XK_w,      spawn,          {.v = wifi } },
+	{ MODKEY|ShiftMask,       XK_w,      spawn,          {.v = watch } },
 
   /* website commands */
 	{ MODKEY,	                XK_b,      spawn,          {.v = firefox } },
