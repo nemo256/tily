@@ -21,21 +21,32 @@
 
 * [Project Structure 📁](#project-structure)
 * [Install 🔨](#install)
-* [Use 🚀](#use)
 * [Develop ⚙️](#develop)
 * [License 📑](#license)
 
 ## Project Structure 📁
 ```
 tily/
-├── file
-├── file
-├── folder/
-│   ├── folder/
-│   │   ├── file
-│   │   └── file
-│   └── file
-└── file
+├── patches/
+│   ├── alpha.diff
+│   ├── attachbottom.diff
+│   ├── hide_vacant_tags.diff
+│   ├── resetlayout.diff
+│   ├── switchtotag.diff
+│   └── vanitygaps.diff
+├── AUTHORS
+├── config.h
+├── config.mk
+├── drw.c
+├── LICENSE
+├── Makefile
+├── movestack.c
+├── README.md
+├── shiftview.c
+├── tily.c
+├── transient.c
+├── util.c
+└── vanitygaps.c
 ```
 
 ## Install 🔨
