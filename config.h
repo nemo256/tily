@@ -148,23 +148,21 @@ static const char *signal_desktop[] = { "signal-desktop", "--no-sandbox", NULL }
 static const char *firefox[] = { "firefox", NULL };
 
 // websites
-static const char *google[] = { "firefox", "https://www.google.com/", NULL };
-static const char *facebook[] = { "firefox", "https://www.facebook.com/", NULL };
-static const char *messenger[] = { "firefox", "https://www.messenger.com/", NULL };
-static const char *netflix[] = { "firefox", "https://www.netflix.com/", NULL };
-static const char *youtube[] = { "firefox", "https://www.youtube.com/", NULL };
-static const char *instagram[] = { "firefox", "https://www.instagram.com/", NULL };
-static const char *gmail[] = { "firefox", "https://mail.google.com/", NULL };
+static const char *google[]     = { "firefox", "https://www.google.com/", NULL };
+static const char *facebook[]   = { "firefox", "https://www.facebook.com/", NULL };
+static const char *messenger[]  = { "firefox", "https://www.messenger.com/", NULL };
+static const char *netflix[]    = { "firefox", "https://www.netflix.com/", NULL };
+static const char *youtube[]    = { "firefox", "https://www.youtube.com/", NULL };
+static const char *instagram[]  = { "firefox", "https://www.instagram.com/", NULL };
+static const char *gmail[]      = { "firefox", "https://mail.google.com/", NULL };
 static const char *aliexpress[] = { "firefox", "https://www.aliexpress.com/", NULL };
-static const char *ouedkniss[] = { "firefox", "https://www.ouedkniss.com/", NULL };
-static const char *GPhotos[] = { "firefox", "https://photos.google.com/", NULL };
-static const char *eccp[] = { "firefox", "https://eccp.poste.dz/", NULL };
-static const char *univ[] = { "firefox", "https://fs.univ-boumerdes.dz/", NULL };
-static const char *translate[] = { "firefox", "https://translate.google.com/", NULL };
-static const char *magnetDL[] = { "firefox", "https://www.magnetdl.com/", NULL };
-static const char *contacts[] = { "firefox", "https://contacts.google.com/", NULL };
-static const char *github[] = { "firefox", "https://www.github.com/nemo256/", NULL };
-static const char *localhost[] = { "firefox", "localhost:3000", NULL };
+static const char *ouedkniss[]  = { "firefox", "https://www.ouedkniss.com/", NULL };
+static const char *GPhotos[]    = { "firefox", "https://photos.google.com/", NULL };
+static const char *translate[]  = { "firefox", "https://translate.google.com/", NULL };
+static const char *magnetDL[]   = { "firefox", "https://www.magnetdl.com/", NULL };
+static const char *contacts[]   = { "firefox", "https://contacts.google.com/", NULL };
+static const char *github[]     = { "firefox", "https://www.github.com/nemo256/", NULL };
+static const char *localhost[]  = { "firefox", "localhost:3000", NULL };
 
 #include "shiftview.c"
 #include "movestack.c"
@@ -227,8 +225,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	      XK_a,      spawn,          {.v = aliexpress } },
 	{ MODKEY|ShiftMask,	      XK_o,      spawn,          {.v = ouedkniss } },
 	{ MODKEY|ShiftMask,	      XK_p,      spawn,          {.v = GPhotos } },
-	{ MODKEY|ShiftMask,	      XK_e,      spawn,          {.v = eccp } },
-	// { MODKEY|ShiftMask,	      XK_u,      spawn,          {.v = univ } },
 	{ MODKEY|ShiftMask,	      XK_t,      spawn,          {.v = translate } },
 	{ MODKEY|ShiftMask,	      XK_d,      spawn,          {.v = magnetDL } },
 	{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = contacts } },
