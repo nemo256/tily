@@ -50,22 +50,22 @@ tily/
 ```
 
 ## Install 🔨
-- Step 1
+- Download the repo:
 ```shell
-$ Command
+$ cd $HOME; mkdir -p .build/
+$ git clone https://github.com/nemo256/tily ~/.build/tily
+$ make && sudo make clean install
 ```
-## Use 🚀
-> Hint
-- Step 1
+
+- Add a tily entry in your .xinitrc file (here is a sample):
 ```shell
-$ Command
+#!/bin/sh
+
+exec tily
 ```
 
 ## Develop ⚙️
-- Step 1
-```shell
-$ Command
-```
+- Edit the <config.h> file.
 
 ## License 📑
 - Please read [tily/LICENSE](https://github.com/nemo256/tily/blob/master/LICENSE)
