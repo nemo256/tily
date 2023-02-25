@@ -66,6 +66,10 @@ exec tily
 
 ## Develop ⚙️
 - Edit the <config.h> file.
+- Re-compile and install:
+```shell
+$ make && sudo make clean install
+```
 
 ## License 📑
 - Please read [tily/LICENSE](https://github.com/nemo256/tily/blob/master/LICENSE)
