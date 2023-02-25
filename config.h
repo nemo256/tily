@@ -12,6 +12,7 @@ static       int smartgaps          = 1;
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const int focusonwheel       = 0;
 static const char *fonts[]          = { "FiraCode Nerd Font:size=20:style=Bold" };
 static const char dmenufont[]       = "FiraCode Nerd Font:size=20:style=Bold";
 static const char col_black[]       = "#000000";
@@ -66,8 +67,8 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 #include "vanitygaps.c"
 static const Layout layouts[] = {
   /* symbol     arrange function */
-  { "[M]",      monocle },
-  // { "[@]",      spiral },
+  // { "[M]",      monocle },
+  { "[@]",      spiral },
   // { "[\\]",     dwindle },
   // { "H[]",      deck },
   // { "TTT",      bstack },
@@ -95,25 +96,25 @@ static const Layout layouts[] = {
 
 /* commands */
 // controls
-static const char *upbrightness[] = { "brightnessctl", "s", "10%+", NULL };
-static const char *downbrightness[] = { "brightnessctl", "s", "10%-", NULL };
-static const char *upkbbacklight[] = { "/root/bin/kbbacklight", "UP", NULL };
+static const char *upbrightness[]    = { "brightnessctl", "s", "10%+", NULL };
+static const char *downbrightness[]  = { "brightnessctl", "s", "10%-", NULL };
+static const char *upkbbacklight[]   = { "/root/bin/kbbacklight", "UP", NULL };
 static const char *downkbbacklight[] = { "/root/bin/kbbacklight", "DOWN", NULL };
-static const char *batterylevel[] = { "/root/bin/batterylevel", NULL };
-static const char *dunstclose[]   = { "dunstctl", "close", NULL };
+static const char *batterylevel[]    = { "/root/bin/batterylevel", NULL };
+static const char *dunstclose[]      = { "dunstctl", "close", NULL };
 static const char *dunstcloseall[]   = { "dunstctl", "close-all", NULL };
-static const char *dunsthistory[]   = { "dunstctl", "history-pop", NULL };
-static const char *playmusic[]   = { "mpc", "toggle", NULL };
-static const char *playnext[]   = { "mpc", "next", NULL };
-static const char *playprev[]   = { "mpc", "prev", NULL };
-static const char *upvol[]   = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
-static const char *downvol[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
-static const char *mutevol[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dunsthistory[]    = { "dunstctl", "history-pop", NULL };
+static const char *playmusic[]       = { "mpc", "toggle", NULL };
+static const char *playnext[]        = { "mpc", "next", NULL };
+static const char *playprev[]        = { "mpc", "prev", NULL };
+static const char *upvol[]    = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
+static const char *downvol[]  = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
+static const char *mutevol[]  = { "amixer", "-q", "set", "Master", "toggle", NULL };
+static char dmenumon[2]       = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray3, "-sb", col_indigo, "-sf", col_gray4, NULL };
 
 // set st as the default terminal
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[] = { "st", NULL };
 
 // terminal commands
 static const char *shutdown[] = { "st", "-e", "systemctl", "poweroff",  NULL };
