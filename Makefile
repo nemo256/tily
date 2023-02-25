@@ -1,5 +1,5 @@
 # tily - dynamic window manager
-# See the LICENSE file for copyright and license details.
+# See LICENSE file for copyright and license details.
 
 include config.mk
 

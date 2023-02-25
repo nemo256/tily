@@ -1,4 +1,3 @@
-/* Compilation command */
 /* cc transient.c -o transient -lX11 */
 
 #include <stdlib.h>

@@ -6,7 +6,7 @@
  * events about window (dis-)appearance. Only one X connection at a time is
  * allowed to select for this event mask.
  *
- * The event handlers of tily are organized in an array which is accessed
+ * The event handlers of dwm are organized in an array which is accessed
  * whenever a new event has been fetched. This allows event dispatching
  * in O(1) time.
  *
@@ -147,6 +147,7 @@ static int applysizehints(Client *c, int *x, int *y, int *w, int *h, int interac
 static void arrange(Monitor *m);
 static void arrangemon(Monitor *m);
 static void attach(Client *c);
+static void attachbottom(Client *c);
 static void attachstack(Client *c);
 static void buttonpress(XEvent *e);
 static void checkotherwm(void);
@@ -167,6 +168,7 @@ static void enternotify(XEvent *e);
 static void expose(XEvent *e);
 static void focus(Client *c);
 static void focusin(XEvent *e);
+static void focusmon(const Arg *arg);
 static void focusstack(const Arg *arg);
 static Atom getatomprop(Client *c, Atom prop);
 static int getrootptr(int *x, int *y);
@@ -174,6 +176,7 @@ static long getstate(Window w);
 static int gettextprop(Window w, Atom atom, char *text, unsigned int size);
 static void grabbuttons(Client *c, int focused);
 static void grabkeys(void);
+static void incnmaster(const Arg *arg);
 static void keypress(XEvent *e);
 static void killclient(const Arg *arg);
 static void manage(Window w, XWindowAttributes *wa);
@@ -199,12 +202,15 @@ static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
 static void setlayout(const Arg *arg);
+static void setmfact(const Arg *arg);
 static void setup(void);
 static void seturgent(Client *c, int urg);
 static void showhide(Client *c);
 static void spawn(const Arg *arg);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
+static void tile(Monitor *m);
+static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
@@ -404,6 +410,15 @@ attach(Client *c)
 }
 
 void
+attachbottom(Client *c)
+{
+	Client **tc;
+	c->next = NULL;
+	for (tc = &c->mon->clients; *tc; tc = &(*tc)->next);
+	*tc = c;
+}
+
+void
 attachstack(Client *c)
 {
 	c->snext = c->mon->stack;
@@ -428,9 +443,15 @@ buttonpress(XEvent *e)
 	}
 	if (ev->window == selmon->barwin) {
 		i = x = 0;
-		do
+		unsigned int occ = 0;
+		for(c = m->clients; c; c=c->next)
+			occ |= c->tags;
+		do {
+			/* Do not reserve space for vacant tags */
+			if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
+				continue;
 			x += TEXTW(tags[i]);
-		while (ev->x >= x && ++i < LENGTH(tags));
+		} while (ev->x >= x && ++i < LENGTH(tags));
 		if (i < LENGTH(tags)) {
 			click = ClkTagBar;
 			arg.ui = 1 << i;
@@ -716,13 +737,12 @@ drawbar(Monitor *m)
 	}
 	x = 0;
 	for (i = 0; i < LENGTH(tags); i++) {
+		/* Do not draw vacant tags */
+		if(!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
+			continue;
 		w = TEXTW(tags[i]);
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
 		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
-		if (occ & 1 << i)
-			drw_rect(drw, x + boxs, boxs, boxw, boxw,
-				m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
-				urg & 1 << i);
 		x += w;
 	}
 	w = TEXTW(m->ltsymbol);
@@ -814,6 +834,20 @@ focusin(XEvent *e)
 
 	if (selmon->sel && ev->window != selmon->sel->win)
 		setfocus(selmon->sel);
+}
+
+void
+focusmon(const Arg *arg)
+{
+	Monitor *m;
+
+	if (!mons->next)
+		return;
+	if ((m = dirtomon(arg->i)) == selmon)
+		return;
+	unfocus(selmon->sel, 0);
+	selmon = m;
+	focus(NULL);
 }
 
 void
@@ -958,6 +992,13 @@ grabkeys(void)
 	}
 }
 
+void
+incnmaster(const Arg *arg)
+{
+	selmon->nmaster = MAX(selmon->nmaster + arg->i, 0);
+	arrange(selmon);
+}
+
 #ifdef XINERAMA
 static int
 isuniquegeom(XineramaScreenInfo *unique, size_t n, XineramaScreenInfo *info)
@@ -1048,7 +1089,7 @@ manage(Window w, XWindowAttributes *wa)
 		c->isfloating = c->oldstate = trans != None || c->isfixed;
 	if (c->isfloating)
 		XRaiseWindow(dpy, c->win);
-	attach(c);
+	attachbottom(c);
 	attachstack(c);
 	XChangeProperty(dpy, root, netatom[NetClientList], XA_WINDOW, 32, PropModeAppend,
 		(unsigned char *) &(c->win), 1);
@@ -1401,7 +1442,7 @@ sendmon(Client *c, Monitor *m)
 	detachstack(c);
 	c->mon = m;
 	c->tags = m->tagset[m->seltags]; /* assign tags of target monitor */
-	attach(c);
+	attachbottom(c);
 	attachstack(c);
 	focus(NULL);
 	arrange(NULL);
@@ -1495,6 +1536,21 @@ setlayout(const Arg *arg)
 		drawbar(selmon);
 }
 
+/* arg > 1.0 will set mfact absolutely */
+void
+setmfact(const Arg *arg)
+{
+	float f;
+
+	if (!arg || !selmon->lt[selmon->sellt]->arrange)
+		return;
+	f = arg->f < 1.0 ? arg->f + selmon->mfact : arg->f - 1.0;
+	if (f < 0.05 || f > 0.95)
+		return;
+	selmon->mfact = f;
+	arrange(selmon);
+}
+
 void
 setup(void)
 {
@@ -1554,7 +1610,7 @@ setup(void)
 	XChangeProperty(dpy, wmcheckwin, netatom[NetWMCheck], XA_WINDOW, 32,
 		PropModeReplace, (unsigned char *) &wmcheckwin, 1);
 	XChangeProperty(dpy, wmcheckwin, netatom[NetWMName], utf8string, 8,
-		PropModeReplace, (unsigned char *) "tily", 3);
+		PropModeReplace, (unsigned char *) "dwm", 3);
 	XChangeProperty(dpy, root, netatom[NetWMCheck], XA_WINDOW, 32,
 		PropModeReplace, (unsigned char *) &wmcheckwin, 1);
 	/* EWMH support per view */
@@ -1613,7 +1669,7 @@ spawn(const Arg *arg)
 			close(ConnectionNumber(dpy));
 		setsid();
 		execvp(((char **)arg->v)[0], (char **)arg->v);
-		die("tily: execvp '%s' failed:", ((char **)arg->v)[0]);
+		die("dwm: execvp '%s' failed:", ((char **)arg->v)[0]);
 	}
 }
 
@@ -1633,6 +1689,43 @@ tagmon(const Arg *arg)
 	if (!selmon->sel || !mons->next)
 		return;
 	sendmon(selmon->sel, dirtomon(arg->i));
+}
+
+void
+tile(Monitor *m)
+{
+	unsigned int i, n, h, mw, my, ty;
+	Client *c;
+
+	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
+	if (n == 0)
+		return;
+
+	if (n > m->nmaster)
+		mw = m->nmaster ? m->ww * m->mfact : 0;
+	else
+		mw = m->ww;
+	for (i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+		if (i < m->nmaster) {
+			h = (m->wh - my) / (MIN(n, m->nmaster) - i);
+			resize(c, m->wx, m->wy + my, mw - (2*c->bw), h - (2*c->bw), 0);
+			if (my + HEIGHT(c) < m->wh)
+				my += HEIGHT(c);
+		} else {
+			h = (m->wh - ty) / (n - i);
+			resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
+			if (ty + HEIGHT(c) < m->wh)
+				ty += HEIGHT(c);
+		}
+}
+
+void
+togglebar(const Arg *arg)
+{
+	selmon->showbar = !selmon->showbar;
+	updatebarpos(selmon);
+	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
+	arrange(selmon);
 }
 
 void
@@ -1738,7 +1831,7 @@ updatebars(void)
 		.background_pixmap = ParentRelative,
 		.event_mask = ButtonPressMask|ExposureMask
 	};
-	XClassHint ch = {"tily", "tily"};
+	XClassHint ch = {"dwm", "dwm"};
 	for (m = mons; m; m = m->next) {
 		if (m->barwin)
 			continue;
@@ -1829,7 +1922,7 @@ updategeom(void)
 				m->clients = c->next;
 				detachstack(c);
 				c->mon = mons;
-				attach(c);
+				attachbottom(c);
 				attachstack(c);
 			}
 			if (m == selmon)
@@ -1920,7 +2013,7 @@ void
 updatestatus(void)
 {
 	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
-		strcpy(stext, "tily-"VERSION);
+		strcpy(stext, "dwm-"VERSION);
 	drawbar(selmon);
 }
 
@@ -2022,7 +2115,7 @@ xerror(Display *dpy, XErrorEvent *ee)
 	|| (ee->request_code == X_GrabKey && ee->error_code == BadAccess)
 	|| (ee->request_code == X_CopyArea && ee->error_code == BadDrawable))
 		return 0;
-	fprintf(stderr, "tily: fatal error: request code=%d, error code=%d\n",
+	fprintf(stderr, "dwm: fatal error: request code=%d, error code=%d\n",
 		ee->request_code, ee->error_code);
 	return xerrorxlib(dpy, ee); /* may call exit */
 }
@@ -2038,7 +2131,7 @@ xerrordummy(Display *dpy, XErrorEvent *ee)
 int
 xerrorstart(Display *dpy, XErrorEvent *ee)
 {
-	die("tily: another window manager is already running");
+	die("dwm: another window manager is already running");
 	return -1;
 }
 
@@ -2058,13 +2151,13 @@ int
 main(int argc, char *argv[])
 {
 	if (argc == 2 && !strcmp("-v", argv[1]))
-		die("tily-"VERSION);
+		die("dwm-"VERSION);
 	else if (argc != 1)
-		die("usage: tily [-v]");
+		die("usage: dwm [-v]");
 	if (!setlocale(LC_CTYPE, "") || !XSupportsLocale())
 		fputs("warning: no locale support\n", stderr);
 	if (!(dpy = XOpenDisplay(NULL)))
-		die("tily: cannot open display");
+		die("dwm: cannot open display");
 	checkotherwm();
 	setup();
 #ifdef __OpenBSD__
