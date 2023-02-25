@@ -1,6 +1,6 @@
 <div align="center">
 
-# `tily - No further development`
+# `tily`
 
 <h3>
   tily is my custom dwm configuration.
