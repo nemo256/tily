@@ -4,6 +4,11 @@
 
 /* appearance */
 static const unsigned int borderpx  = 7;        /* border pixel of windows */
+static const unsigned int gappih    = 7;    /* horiz inner gap between windows */
+static const unsigned int gappiv    = 7;    /* vert inner gap between windows */
+static const unsigned int gappoh    = 0;    /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 0;    /* vert outer gap between windows and screen edge */
+static       int smartgaps          = 1;
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -14,36 +19,67 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#000000";
 static const char col_indigo[]      = "#4b0088";
+static const unsigned int baralpha  	= 0xcc;
+static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_black, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_indigo,  col_indigo  },
 };
 
+static const unsigned int alphas[][3] = {
+	/*               fg      bg        border     */
+	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+};
+
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "", "", "{}", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class      instance      title    		    tags mask  		switchtotag  isfloating  monitor */
+	{ "firefox",  "Navigator",  NULL,  	 	      1,	    	 		1, 				   0,   			 -1 },
+	{ "St",  			"st",       	"nmtui",   	    1 << 1,	   		1, 				   0,   			 -1 },
+	{ "St",  			"st",       	"htop",   	    1 << 1,	   		1, 				   0,   			 -1 },
+	{ "St",  			"st",       	"nvim",   	    1 << 2,	   		1, 				   0,   			 -1 },
+	{ "St",  			"st",       	"tty-clock",   	1 << 2,	   		1, 				   0,   			 -1 },
+	{ "St",  			"st",       	"newsboat",     1 << 3,	   		1, 				   0,   		 	 -1 },
+	{ "St",  			"st",       	"irssi",  	    1 << 3,	   		1, 				   0,   			 -1 },
+	{ "St",  			"st",       	"ani-cli",      1 << 3,	   		1, 				   0,   			 -1 },
+	{ "St",  			"st",       	"pipe-viewer",  1 << 3,	   		1, 				   0,   			 -1 },
+	{ "St",  			"st",       	"tremc",  			1 << 3,	   		1, 				   0,   			 -1 },
+	{ "Zathura",  NULL,       	NULL,  					1 << 3,	   		1, 				   0,   			 -1 },
+	{ "mpv",  		"gl",       	NULL,  			    1 << 3,	   		1, 				   0,   			 -1 },
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.63; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
+#define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
+#include "vanitygaps.c"
 static const Layout layouts[] = {
-	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+  /* symbol     arrange function */
+  { "[M]",      monocle },
+  { "[@]",      spiral },
+  { "[\\]",     dwindle },
+  { "H[]",      deck },
+  { "TTT",      bstack },
+  { "===",      bstackhoriz },
+  { "HHH",      grid },
+  { "###",      nrowgrid },
+  { "---",      horizgrid },
+  { ":::",      gaplessgrid },
+  { "|M|",      centeredmaster },
+  { ">M>",      centeredfloatingmaster },
+  { "><>",      NULL },    /* no layout function means floating behavior */
+  { NULL,       NULL },
 };
 
 /* key definitions */
