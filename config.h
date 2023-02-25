@@ -3,15 +3,15 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 7;        /* border pixel of windows */
+static const unsigned int borderpx  = 7;    /* border pixel of windows */
 static const unsigned int gappih    = 7;    /* horiz inner gap between windows */
 static const unsigned int gappiv    = 7;    /* vert inner gap between windows */
 static const unsigned int gappoh    = 0;    /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 0;    /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 1;
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 0;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const unsigned int snap      = 32;   /* snap pixel */
+static const int showbar            = 0;    /* 0 means no bar */
+static const int topbar             = 1;    /* 0 means bottom bar */
 static const int focusonwheel       = 0;
 static const char *fonts[]          = { "FiraCode Nerd Font:size=20:style=Bold" };
 static const char dmenufont[]       = "FiraCode Nerd Font:size=20:style=Bold";
