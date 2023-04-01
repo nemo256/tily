@@ -141,8 +141,7 @@ static const char *download[] = { "download", NULL };
 static const char *mypointer[] = { "pointer", NULL };
 static const char *screenshot[] = { "screenshot", NULL };
 static const char *screenshotSelect[] = { "screenshotSelect", NULL };
-static const char *photos[] = { "sxiv", "-ftqrb", "/root/Pictures", NULL };
-static const char *signal_desktop[] = { "signal-desktop", "--no-sandbox", NULL };
+static const char *photos[] = { "sxiv", "-ftqrb", "/home/n3m0/Pictures", NULL };
 // static const char *tuir[] = { "st", "-e", "tuir", NULL };
 
 // firefox command
@@ -202,7 +201,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,       XK_Return, spawn,          {.v = background } },
 	// { MODKEY,                 XK_k,      spawn,          {.v = mykeys } },
 	{ MODKEY,                 XK_s,      spawn,          {.v = download } },
-	{ MODKEY|ShiftMask,       XK_s,      spawn,          {.v = signal_desktop } },
 	{ MODKEY,                 XK_t,      spawn,          {.v = torrent } },
 	{ MODKEY,                 XK_m,      spawn,          {.v = music } },
 	// { MODKEY,                 XK_l,      spawn,          {.v = lynx } },
