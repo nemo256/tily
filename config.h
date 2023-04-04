@@ -3,7 +3,7 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 7;    /* border pixel of windows */
+static const unsigned int borderpx  = 5;    /* border pixel of windows */
 static const unsigned int gappih    = 7;    /* horiz inner gap between windows */
 static const unsigned int gappiv    = 7;    /* vert inner gap between windows */
 static const unsigned int gappoh    = 0;    /* horiz outer gap between windows and screen edge */
