@@ -127,7 +127,7 @@ static const char *newsboat[] = { "st", "-e", "newsboat", NULL };
 static const char *email[] = { "st", "-e", "neomutt", NULL };
 static const char *clock[] = { "st", "-e", "tty-clock", "-scbC", "4", NULL };
 static const char *pipeviewer[] = { "st", "-f", "'Fira Code:size=16:style=bold:antialias=true:autohint=true'", "-e", "pipe-viewer", NULL };
-static const char *torrent[] = { "st", "-e", "tremc", NULL };
+static const char *torrent[] = { "st", "-e", "tremc", "-X", NULL };
 static const char *music[] = { "st", "-e", "ncmpcpp", NULL };
 static const char *lynx[] = { "st", "-e", "lynx", NULL };
 static const char *anime[] = { "st", "-e", "ani-cli", "--dub", NULL };
