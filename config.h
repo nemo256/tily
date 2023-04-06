@@ -141,7 +141,8 @@ static const char *download[] = { "download", NULL };
 static const char *mypointer[] = { "pointer", NULL };
 static const char *screenshot[] = { "screenshot", NULL };
 static const char *screenshotSelect[] = { "screenshotSelect", NULL };
-static const char *photos[] = { "sxiv", "-ftqrb", "/home/n3m0/Pictures", NULL };
+static const char *photos[] = { "sxiv", "-ftqrb", "/home/n3m0/pix", NULL };
+static const char *wallpapers[] = { "sxiv", "-ftqrb", "/home/n3m0/wals", NULL };
 // static const char *tuir[] = { "st", "-e", "tuir", NULL };
 
 // firefox command
@@ -209,6 +210,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,       XK_grave,  spawn,          {.v = screenshotSelect} },
 	{ ControlMask,            XK_grave,  spawn,          {.v = mypointer } },
 	{ MODKEY,                 XK_p,      spawn,          {.v = photos } },
+	{ MODKEY|ShiftMask,       XK_w,      spawn,          {.v = wallpapers } },
 	{ MODKEY,             		XK_w,      spawn,          {.v = wifi } },
   /* website commands */
 	{ MODKEY,	                XK_b,      spawn,          {.v = firefox } },
