@@ -162,6 +162,7 @@ static const char *GPhotos[]    = { "firefox", "https://photos.google.com/", NUL
 static const char *translate[]  = { "firefox", "https://translate.google.com/", NULL };
 static const char *magnetDL[]   = { "firefox", "https://www.magnetdl.com/", NULL };
 static const char *contacts[]   = { "firefox", "https://contacts.google.com/", NULL };
+static const char *chatgpt[]    = { "firefox", "https://chat.openai.com/", NULL };
 static const char *github[]     = { "firefox", "https://www.github.com/nemo256/", NULL };
 static const char *localhost[]  = { "firefox", "localhost:3000", NULL };
 
@@ -228,7 +229,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	      XK_p,      spawn,          {.v = GPhotos } },
 	{ MODKEY|ShiftMask,	      XK_t,      spawn,          {.v = translate } },
 	{ MODKEY|ShiftMask,	      XK_d,      spawn,          {.v = magnetDL } },
-	{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = contacts } },
+	// { MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = contacts } },
+	{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = chatgpt } },
 	{ MODKEY|ShiftMask,	      XK_l,      spawn,          {.v = localhost } },
   /* dwm commands */
 	{ MODKEY|ShiftMask,       XK_f,      togglebar,      {0} },
