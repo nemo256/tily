@@ -144,6 +144,7 @@ static const char *screenshotSelect[] = { "screenshotSelect", NULL };
 static const char *photos[] = { "sxiv", "-ftqrb", "/home/n3m0/pix", NULL };
 static const char *wallpapers[] = { "sxiv", "-ftqrb", "/home/n3m0/wals", NULL };
 static const char *interview[] = { "interview", NULL };
+static const char *sites[] = { "sxiv", "-ftqrb", "/home/n3m0/pix/sites", NULL };
 // static const char *tuir[] = { "st", "-e", "tuir", NULL };
 
 // firefox command
@@ -225,6 +226,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	      XK_y,      spawn,          {.v = youtube } },
 	// { MODKEY|ShiftMask,	      XK_i,      spawn,          {.v = instagram } },
 	{ MODKEY|ShiftMask,	      XK_i,      spawn,          {.v = interview } },
+	{ MODKEY|ShiftMask,	      XK_s,      spawn,          {.v = sites } },
 	{ MODKEY|ShiftMask,	      XK_g,      spawn,          {.v = gmail } },
 	{ MODKEY|ShiftMask,	      XK_a,      spawn,          {.v = aliexpress } },
 	{ MODKEY|ShiftMask,	      XK_o,      spawn,          {.v = ouedkniss } },
