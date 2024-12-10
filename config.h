@@ -53,6 +53,7 @@ static const Rule rules[] = {
 	{ "St",  			"st",       	"ani-cli",      1 << 3,	   		1, 				   0,   			 -1 },
 	{ "St",  			"st",       	"pipe-viewer",  1 << 3,	   		1, 				   0,   			 -1 },
 	{ "St",  			"st",       	"tremc",  			1 << 3,	   		1, 				   0,   			 -1 },
+	{ "St",  			"st",       	"sxiv",  			  1 << 3,	   		1, 				   0,   			 -1 },
 	{ "Zathura",  NULL,       	NULL,  					1 << 3,	   		1, 				   0,   			 -1 },
 	{ "mpv",  		"gl",       	NULL,  			    1 << 3,	   		1, 				   0,   			 -1 },
 };
