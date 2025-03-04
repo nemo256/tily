@@ -166,7 +166,10 @@ static const char *translate[]  = { "firefox", "https://translate.google.com/", 
 static const char *DL1337x[]   = { "firefox", "https://www.1377x.to/", NULL };
 static const char *contacts[]   = { "firefox", "https://contacts.google.com/", NULL };
 static const char *chatgpt[]    = { "firefox", "https://chat.openai.com/", NULL };
+static const char *deepseek[]   = { "firefox", "https://chat.deepseek.com/", NULL };
+static const char *qwen[]       = { "firefox", "https://chat.qwen.ai/", NULL };
 static const char *github[]     = { "firefox", "https://www.github.com/nemo256/", NULL };
+static const char *new_repo[]     = { "firefox", "https://www.github.com/new", NULL };
 static const char *localhost[]  = { "firefox", "localhost:3000", NULL };
 
 #include "shiftview.c"
@@ -223,7 +226,8 @@ static Key keys[] = {
 	{ MODKEY,	                XK_g,      spawn,          {.v = github } },
 	// { MODKEY|ShiftMask,	      XK_f,      spawn,          {.v = facebook } },
 	{ MODKEY|ShiftMask,	      XK_m,      spawn,          {.v = messenger } },
-	{ MODKEY|ShiftMask,	      XK_n,      spawn,          {.v = netflix } },
+	{ MODKEY|ShiftMask,	      XK_n,      spawn,          {.v = new_repo } },
+	/*{ MODKEY|ShiftMask,	      XK_n,      spawn,          {.v = netflix } },*/
 	{ MODKEY|ShiftMask,	      XK_y,      spawn,          {.v = youtube } },
 	// { MODKEY|ShiftMask,	      XK_i,      spawn,          {.v = instagram } },
 	{ MODKEY|ShiftMask,	      XK_i,      spawn,          {.v = interview } },
@@ -235,7 +239,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	      XK_t,      spawn,          {.v = translate } },
 	{ MODKEY|ShiftMask,	      XK_d,      spawn,          {.v = DL1337x } },
 	// { MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = contacts } },
-	{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = chatgpt } },
+	//{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = chatgpt } },
+	//{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = deepseek } },
+	{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = qwen } },
 	{ MODKEY|ShiftMask,	      XK_l,      spawn,          {.v = localhost } },
   /* dwm commands */
 	{ MODKEY|ShiftMask,       XK_f,      togglebar,      {0} },
