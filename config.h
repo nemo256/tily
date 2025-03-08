@@ -168,6 +168,7 @@ static const char *contacts[]   = { "firefox", "https://contacts.google.com/", N
 static const char *chatgpt[]    = { "firefox", "https://chat.openai.com/", NULL };
 static const char *deepseek[]   = { "firefox", "https://chat.deepseek.com/", NULL };
 static const char *qwen[]       = { "firefox", "https://chat.qwen.ai/", NULL };
+static const char *grok[]       = { "firefox", "https://grok.com/", NULL };
 static const char *github[]     = { "firefox", "https://www.github.com/nemo256/", NULL };
 static const char *new_repo[]     = { "firefox", "https://www.github.com/new", NULL };
 static const char *localhost[]  = { "firefox", "localhost:3000", NULL };
@@ -241,7 +242,8 @@ static Key keys[] = {
 	// { MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = contacts } },
 	//{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = chatgpt } },
 	//{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = deepseek } },
-	{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = qwen } },
+	//{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = qwen } },
+	{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = grok } },
 	{ MODKEY|ShiftMask,	      XK_l,      spawn,          {.v = localhost } },
   /* dwm commands */
 	{ MODKEY|ShiftMask,       XK_f,      togglebar,      {0} },
