@@ -43,7 +43,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance      title    		    tags mask  		switchtotag  isfloating  monitor */
-	{ "firefox",  "Navigator",  NULL,  	 	      1,	    	 		1, 				   0,   			 -1 },
+	{ "chromium",  "Navigator",  NULL,  	 	      1,	    	 	1, 				   0,   			 -1 },
 	{ "St",  			"st",       	"nmtui",   	    1 << 1,	   		1, 				   0,   			 -1 },
 	{ "St",  			"st",       	"htop",   	    1 << 1,	   		1, 				   0,   			 -1 },
 	{ "St",  			"st",       	"nvim",   	    1 << 2,	   		1, 				   0,   			 -1 },
@@ -148,30 +148,33 @@ static const char *interview[] = { "interview", NULL };
 static const char *sites[] = { "sxiv", "-ftqrb", "/home/n3m0/pix/sites", NULL };
 // static const char *tuir[] = { "st", "-e", "tuir", NULL };
 
+// chromium command
+static const char *chromium[] = { "chromium", NULL };
+
 // firefox command
 static const char *firefox[] = { "firefox", NULL };
 
 // websites
-static const char *google[]     = { "firefox", "https://www.google.com/", NULL };
-static const char *facebook[]   = { "firefox", "https://www.facebook.com/", NULL };
-static const char *messenger[]  = { "firefox", "https://www.messenger.com/", NULL };
-static const char *netflix[]    = { "firefox", "https://www.netflix.com/", NULL };
-static const char *youtube[]    = { "firefox", "https://www.youtube.com/", NULL };
-static const char *instagram[]  = { "firefox", "https://www.instagram.com/", NULL };
-static const char *gmail[]      = { "firefox", "https://mail.google.com/", NULL };
-static const char *aliexpress[] = { "firefox", "https://www.aliexpress.com/", NULL };
-static const char *ouedkniss[]  = { "firefox", "https://www.ouedkniss.com/", NULL };
-static const char *GPhotos[]    = { "firefox", "https://photos.google.com/", NULL };
-static const char *translate[]  = { "firefox", "https://translate.google.com/", NULL };
-static const char *DL1337x[]   = { "firefox", "https://www.1377x.to/", NULL };
-static const char *contacts[]   = { "firefox", "https://contacts.google.com/", NULL };
-static const char *chatgpt[]    = { "firefox", "https://chat.openai.com/", NULL };
-static const char *deepseek[]   = { "firefox", "https://chat.deepseek.com/", NULL };
-static const char *qwen[]       = { "firefox", "https://chat.qwen.ai/", NULL };
-static const char *grok[]       = { "firefox", "https://grok.com/", NULL };
-static const char *github[]     = { "firefox", "https://www.github.com/nemo256/", NULL };
-static const char *new_repo[]     = { "firefox", "https://www.github.com/new", NULL };
-static const char *localhost[]  = { "firefox", "localhost:3000", NULL };
+static const char *google[]     = { "chromium", "https://www.google.com/", NULL };
+static const char *facebook[]   = { "chromium", "https://www.facebook.com/", NULL };
+static const char *messenger[]  = { "chromium", "https://www.messenger.com/", NULL };
+static const char *netflix[]    = { "chromium", "https://www.netflix.com/", NULL };
+static const char *youtube[]    = { "chromium", "https://www.youtube.com/", NULL };
+static const char *instagram[]  = { "chromium", "https://www.instagram.com/", NULL };
+static const char *gmail[]      = { "chromium", "https://mail.google.com/", NULL };
+static const char *aliexpress[] = { "chromium", "https://www.aliexpress.com/", NULL };
+static const char *ouedkniss[]  = { "chromium", "https://www.ouedkniss.com/", NULL };
+static const char *GPhotos[]    = { "chromium", "https://photos.google.com/", NULL };
+static const char *translate[]  = { "chromium", "https://translate.google.com/", NULL };
+static const char *DL1337x[]    = { "chromium", "https://www.1377x.to/", NULL };
+static const char *contacts[]   = { "chromium", "https://contacts.google.com/", NULL };
+static const char *chatgpt[]    = { "chromium", "https://chat.openai.com/", NULL };
+static const char *deepseek[]   = { "chromium", "https://chat.deepseek.com/", NULL };
+static const char *qwen[]       = { "chromium", "https://chat.qwen.ai/", NULL };
+static const char *grok[]       = { "chromium", "https://grok.com/", NULL };
+static const char *github[]     = { "chromium", "https://www.github.com/nemo256/", NULL };
+static const char *new_repo[]   = { "chromium", "https://www.github.com/new", NULL };
+static const char *localhost[]  = { "chromium", "localhost:3000", NULL };
 
 #include "shiftview.c"
 #include "movestack.c"
@@ -221,7 +224,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,       XK_w,      spawn,          {.v = wallpapers } },
 	{ MODKEY,             		XK_w,      spawn,          {.v = wifi } },
   /* website commands */
-	{ MODKEY,	                XK_b,      spawn,          {.v = firefox } },
+	{ MODKEY,	                XK_b,      spawn,          {.v = chromium } },
+	// { MODKEY,	                XK_b,      spawn,          {.v = firefox } },
 	{ MODKEY|ShiftMask,	      XK_b,      spawn,          {.v = batterylevel } },
 	// { MODKEY,	                XK_g,      spawn,          {.v = google } },
 	{ MODKEY,	                XK_g,      spawn,          {.v = github } },
