@@ -174,7 +174,7 @@ static const char *qwen[]       = { "chromium", "https://chat.qwen.ai/", NULL };
 static const char *grok[]       = { "chromium", "https://grok.com/", NULL };
 static const char *github[]     = { "chromium", "https://www.github.com/nemo256/", NULL };
 static const char *new_repo[]   = { "chromium", "https://www.github.com/new", NULL };
-static const char *localhost[]  = { "chromium", "localhost:3000", NULL };
+static const char *localhost[]  = { "chromium", "http://localhost:3000", NULL };
 
 #include "shiftview.c"
 #include "movestack.c"
