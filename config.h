@@ -3,7 +3,7 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 5;    /* border pixel of windows */
+static const unsigned int borderpx  = 0;    /* border pixel of windows */
 static const unsigned int gappih    = 7;    /* horiz inner gap between windows */
 static const unsigned int gappiv    = 7;    /* vert inner gap between windows */
 static const unsigned int gappoh    = 0;    /* horiz outer gap between windows and screen edge */
@@ -44,7 +44,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance      title    		    tags mask  		switchtotag  isfloating  monitor */
 	{ "chromium",  "Navigator",  NULL,  	 	      1,	    	 	1, 				   0,   			 -1 },
-	{ "St",  			"st",       	"nmtui",   	    1 << 1,	   		1, 				   0,   			 -1 },
+	// { "St",  			"st",       	"nmtui",   	    1 << 1,	   		1, 				   0,   			 -1 },
 	{ "St",  			"st",       	"htop",   	    1 << 1,	   		1, 				   0,   			 -1 },
 	{ "St",  			"st",       	"nvim",   	    1 << 2,	   		1, 				   0,   			 -1 },
 	{ "St",  			"st",       	"tty-clock",   	1 << 2,	   		1, 				   0,   			 -1 },
@@ -85,7 +85,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod4Mask
+#define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -118,8 +118,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[] = { "st", NULL };
 
 // terminal commands
-static const char *shutdown[] = { "st", "-e", "systemctl", "poweroff",  NULL };
-static const char *reboot[] = { "st", "-e", "systemctl", "reboot",  NULL };
+static const char *shutdown[] = { "st", "-e", "sudo", "systemctl", "poweroff",  NULL };
+static const char *reboot[] = { "st", "-e", "sudo", "systemctl", "reboot",  NULL };
 static const char *ranger[] = { "st", "-e", "ranger", NULL };
 static const char *htop[] = { "st", "-e", "htop", NULL };
 static const char *vim[] = { "st", "-e" , "nvim", NULL };
@@ -132,7 +132,7 @@ static const char *torrent[] = { "st", "-e", "tremc", "-X", NULL };
 static const char *music[] = { "st", "-e", "ncmpcpp", NULL };
 static const char *lynx[] = { "st", "-e", "links", NULL };
 static const char *anime[] = { "st", "-e", "ani-cli", "--dub", NULL };
-static const char *wifi[] = { "st", "-e", "nmtui", NULL };
+// static const char *wifi[] = { "st", "-e", "nmtui", NULL };
 static const char *watch[] = { "watch", NULL };
 static const char *record[] = { "record", NULL };
 static const char *vpn[] = { "vpn", NULL };
@@ -142,10 +142,10 @@ static const char *download[] = { "download", NULL };
 static const char *mypointer[] = { "pointer", NULL };
 static const char *screenshot[] = { "screenshot", NULL };
 static const char *screenshotSelect[] = { "screenshotSelect", NULL };
-static const char *photos[] = { "sxiv", "-ftqrb", "/home/n3m0/pix", NULL };
-static const char *wallpapers[] = { "sxiv", "-ftqrb", "/home/n3m0/wals", NULL };
+static const char *photos[] = { "sxiv", "-ftqrb", "/home/lami/pix", NULL };
+static const char *wallpapers[] = { "sxiv", "-ftqrb", "/home/lami/wals", NULL };
 static const char *interview[] = { "interview", NULL };
-static const char *sites[] = { "sxiv", "-ftqrb", "/home/n3m0/pix/sites", NULL };
+static const char *sites[] = { "sxiv", "-ftqrb", "/home/lami/pix/sites", NULL };
 // static const char *tuir[] = { "st", "-e", "tuir", NULL };
 
 // chromium command
@@ -222,7 +222,7 @@ static Key keys[] = {
 	{ ControlMask,            XK_grave,  spawn,          {.v = mypointer } },
 	{ MODKEY,                 XK_p,      spawn,          {.v = photos } },
 	{ MODKEY|ShiftMask,       XK_w,      spawn,          {.v = wallpapers } },
-	{ MODKEY,             		XK_w,      spawn,          {.v = wifi } },
+	// { MODKEY,             		XK_w,      spawn,          {.v = wifi } },
   /* website commands */
 	{ MODKEY,	                XK_b,      spawn,          {.v = chromium } },
 	// { MODKEY,	                XK_b,      spawn,          {.v = firefox } },
