@@ -15,13 +15,27 @@ static const int topbar             = 1;    /* 0 means bottom bar */
 static const int focusonwheel       = 0;
 static const char *fonts[]          = { "FiraCode Nerd Font:size=20:style=Bold" };
 static const char dmenufont[]       = "FiraCode Nerd Font:size=20:style=Bold";
-static const char col_black[]       = "#000000";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#000000";
-static const char col_indigo[]      = "#4b0088";
+
+// static const char col_black[]       = "#000000";
+// static const char col_gray2[]       = "#444444";
+// static const char col_gray3[]       = "#bbbbbb";
+// static const char col_gray4[]       = "#000000";
+// static const char col_indigo[]      = "#4b0088";
+
+static const char col_black[]       = "#000000"; // black
+static const char col_gray2[]       = "#404040"; // dark gray
+static const char col_gray3[]       = "#c0c0c0"; // light gray
+static const char col_gray4[]       = "#ffffff"; // white
+static const char col_indigo[]      = "#808080"; // medium gray (replacing purple)
+
+
 static const unsigned int baralpha  	= 0xcc;
 static const unsigned int borderalpha = 0xcc;
+// static const char *colors[][3]      = {
+// 	/*               fg         bg         border   */
+// 	[SchemeNorm] = { col_gray3, col_black, col_gray2 },
+// 	[SchemeSel]  = { col_gray4, col_indigo,  col_indigo  },
+// };
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_black, col_gray2 },
@@ -200,7 +214,7 @@ static Key keys[] = {
   /* terminal commands */
 	{ MODKEY,	                XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                 XK_d,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                 XK_f,      spawn,          {.v = ranger } },
+	// { MODKEY,                 XK_f,      spawn,          {.v = ranger } },
 	{ MODKEY,                 XK_h,      spawn,          {.v = htop } },
 	{ MODKEY,                 XK_v,      spawn,          {.v = vim } },
 	{ MODKEY,                 XK_e,      spawn,          {.v = email } },
