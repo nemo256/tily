@@ -59,7 +59,7 @@ static const Rule rules[] = {
 	/* class      instance      title    		    tags mask  		switchtotag  isfloating  monitor */
 	{ "chromium",  "Navigator",  NULL,  	 	      1,	    	 	1, 				   0,   			 -1 },
 	// { "St",  			"st",       	"nmtui",   	    1 << 1,	   		1, 				   0,   			 -1 },
-	{ "St",  			"st",       	"htop",   	    1 << 1,	   		1, 				   0,   			 -1 },
+	// { "St",  			"st",       	"htop",   	    1 << 1,	   		1, 				   0,   			 -1 },
 	{ "St",  			"st",       	"nvim",   	    1 << 2,	   		1, 				   0,   			 -1 },
 	{ "St",  			"st",       	"tty-clock",   	1 << 2,	   		1, 				   0,   			 -1 },
 	{ "St",  			"st",       	"newsboat",     1 << 3,	   		1, 				   0,   		 	 -1 },
@@ -135,7 +135,7 @@ static const char *termcmd[] = { "st", NULL };
 static const char *shutdown[] = { "st", "-e", "sudo", "systemctl", "poweroff",  NULL };
 static const char *reboot[] = { "st", "-e", "sudo", "systemctl", "reboot",  NULL };
 static const char *ranger[] = { "st", "-e", "ranger", NULL };
-static const char *htop[] = { "st", "-e", "htop", NULL };
+// static const char *htop[] = { "st", "-e", "htop", NULL };
 static const char *vim[] = { "st", "-e" , "nvim", NULL };
 static const char *irssi[] = { "st", "-e", "irssi", NULL };
 static const char *newsboat[] = { "st", "-e", "newsboat", NULL };
@@ -215,7 +215,7 @@ static Key keys[] = {
 	{ MODKEY,	                XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                 XK_d,      spawn,          {.v = dmenucmd } },
 	// { MODKEY,                 XK_f,      spawn,          {.v = ranger } },
-	{ MODKEY,                 XK_h,      spawn,          {.v = htop } },
+	// { MODKEY,                 XK_h,      spawn,          {.v = htop } },
 	{ MODKEY,                 XK_v,      spawn,          {.v = vim } },
 	{ MODKEY,                 XK_e,      spawn,          {.v = email } },
 	{ MODKEY,                 XK_c,      spawn,          {.v = clock } },
