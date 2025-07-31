@@ -147,6 +147,7 @@ static const char *music[] = { "st", "-e", "ncmpcpp", NULL };
 static const char *lynx[] = { "st", "-e", "links", NULL };
 static const char *anime[] = { "st", "-e", "ani-cli", "--dub", NULL };
 // static const char *wifi[] = { "st", "-e", "nmtui", NULL };
+static const char *wifi[] = { "st", "-e", "iwctl", NULL };
 static const char *watch[] = { "watch", NULL };
 static const char *record[] = { "record", NULL };
 static const char *vpn[] = { "vpn", NULL };
@@ -236,7 +237,7 @@ static Key keys[] = {
 	{ ControlMask,            XK_grave,  spawn,          {.v = mypointer } },
 	{ MODKEY,                 XK_p,      spawn,          {.v = photos } },
 	{ MODKEY|ShiftMask,       XK_w,      spawn,          {.v = wallpapers } },
-	// { MODKEY,             		XK_w,      spawn,          {.v = wifi } },
+	{ MODKEY,             		XK_w,      spawn,          {.v = wifi } },
   /* website commands */
 	{ MODKEY,	                XK_b,      spawn,          {.v = chromium } },
 	// { MODKEY,	                XK_b,      spawn,          {.v = firefox } },
