@@ -262,7 +262,7 @@ static Key keys[] = {
 	//{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = chatgpt } },
 	//{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = deepseek } },
 	//{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = qwen } },
-	{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = grok } },
+	{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = chatgpt } },
 	{ MODKEY|ShiftMask,	      XK_l,      spawn,          {.v = localhost } },
   /* dwm commands */
 	{ MODKEY|ShiftMask,       XK_f,      togglebar,      {0} },
