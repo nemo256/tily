@@ -183,6 +183,7 @@ static const char *GPhotos[]    = { "chromium", "https://photos.google.com/", NU
 static const char *translate[]  = { "chromium", "https://translate.google.com/", NULL };
 static const char *DL1337x[]    = { "chromium", "https://www.1377x.to/", NULL };
 static const char *contacts[]   = { "chromium", "https://contacts.google.com/", NULL };
+static const char *claude[]     = { "chromium", "https://claude.ai/", NULL };
 static const char *chatgpt[]    = { "chromium", "https://chat.openai.com/", NULL };
 static const char *deepseek[]   = { "chromium", "https://chat.deepseek.com/", NULL };
 static const char *qwen[]       = { "chromium", "https://chat.qwen.ai/", NULL };
@@ -262,7 +263,7 @@ static Key keys[] = {
 	//{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = chatgpt } },
 	//{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = deepseek } },
 	//{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = qwen } },
-	{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = chatgpt } },
+	{ MODKEY|ShiftMask,	      XK_c,      spawn,          {.v = claude } },
 	{ MODKEY|ShiftMask,	      XK_l,      spawn,          {.v = localhost } },
   /* dwm commands */
 	{ MODKEY|ShiftMask,       XK_f,      togglebar,      {0} },
